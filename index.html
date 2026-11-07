@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Atomic Town: a 4-night, 1950s test-town paintball pop-up at BIC, Sakhir. 14 to 17 January 2027.">
+<title>Atomic Town Registration</title>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+/* Layout: teal "night sky" site matching the event poster. Sticky tab bar (Home / Venue / Register), each tab a view in one page. Single deliberate look. */
+:root {
+  --night: #16302b;
+  --night-2: #1f3a35;
+  --night-3: #24453f;
+  --paper: #f3e6c8;
+  --paper-2: #faf2df;
+  --ink: #1f3a35;
+  --ink-soft: #4d5d58;
+  --siren: #f2b33d;
+  --mint: #7cc6b0;
+  --rust: #b23b30;
+  --rule: #d9c79f;
+  --display: "Abril Fatface", "Playfair Display", Georgia, serif;
+  --body: "DM Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "Space Mono", "Courier New", monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--night);
+  color: var(--paper);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.5;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--night-2); }
+a { color: var(--siren); }
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.hazard {
+  height: 12px;
+  background: repeating-linear-gradient(-45deg, var(--siren) 0 14px, var(--night-2) 14px 28px);
+}
+
+/* Top bar + tabs */
+.topbar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 5;
+  background: var(--night-2);
+  border-bottom: 2px solid var(--siren);
+}
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 10px; flex-wrap: wrap; }
+.brand { font-family: var(--display); font-size: 26px; color: var(--paper); text-decoration: none; line-height: 1; }
+.brand span { color: var(--siren); }
+nav.tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+nav.tabs a {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--paper);
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 2px solid transparent;
+}
+nav.tabs a:hover { border-color: var(--mint); }
+nav.tabs a[aria-current="page"] { background: var(--siren); color: var(--ink); }
+nav.tabs a.cta { border-color: var(--siren); }
+nav.tabs a:focus-visible { outline: 3px solid var(--paper); outline-offset: 2px; }
+
+main { padding-block: 32px 56px; }
+.view { display: grid; gap: 48px; }
+
+/* Shared type */
+.tag {
+  justify-self: start;
+  display: inline-block;
+  background: var(--siren);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+.eyebrow { font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mint); margin: 0; }
+h1 {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(56px, 10vw, 104px);
+  line-height: 0.95;
+  margin: 8px 0 0;
+  color: var(--paper);
+  text-wrap: balance;
+}
+h2.sec { font-family: var(--display); font-weight: 400; font-size: clamp(32px, 5vw, 44px); line-height: 1.05; margin: 4px 0 0; text-wrap: balance; }
+.tagline { font-family: var(--display); font-size: clamp(24px, 4vw, 34px); color: var(--mint); margin: 0; }
+.when { font-family: var(--mono); font-weight: 700; color: var(--siren); letter-spacing: 0.04em; margin: 0; }
+.lede { max-width: 60ch; margin: 0; opacity: 0.92; }
+.sec-head { display: grid; gap: 6px; margin-bottom: 18px; }
+
+.btn {
+  display: inline-block;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 17px;
+  text-decoration: none;
+  padding: 13px 22px;
+  border-radius: 8px;
+  background: var(--siren);
+  color: var(--ink);
+  border: 2px solid var(--siren);
+}
+.btn:hover { background: #ffc552; }
+.btn.ghost { background: transparent; color: var(--paper); border-color: var(--paper); }
+.btn.ghost:hover { background: rgba(243, 230, 200, 0.08); }
+.btn:focus-visible { outline: 3px solid var(--paper); outline-offset: 3px; }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+
+/* Home hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 32px; align-items: center; }
+@media (max-width: 820px) { .hero { grid-template-columns: minmax(0, 1fr); } }
+.hero-text { display: grid; gap: 12px; min-width: 0; }
+.poster { width: 100%; max-width: 420px; justify-self: center; border-radius: 10px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45); transform: rotate(1.5deg); }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+.fact { font-family: var(--mono); font-size: 13px; border: 1px solid var(--mint); color: var(--mint); border-radius: 999px; padding: 4px 12px; }
+
+/* Ticket cards */
+.tickets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 860px) { .tickets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .tickets { grid-template-columns: minmax(0, 1fr); } }
+.tcard { position: relative; background: var(--night-3); border: 2px solid var(--mint); border-radius: 10px; padding: 18px; display: grid; gap: 4px; align-content: start; }
+.tcard .k { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mint); }
+.tcard .v { font-family: var(--display); font-size: 40px; line-height: 1.05; color: var(--siren); font-variant-numeric: tabular-nums; }
+.tcard .d { font-size: 14px; opacity: 0.9; }
+.tcard.hot { background: var(--siren); border-color: var(--siren); color: var(--ink); }
+.tcard.hot .k, .tcard.hot .v { color: var(--ink); }
+.tcard .save { position: absolute; top: -12px; right: 12px; background: var(--rust); color: var(--paper); font-family: var(--mono); font-weight: 700; font-size: 12px; padding: 3px 10px; border-radius: 999px; }
+
+/* Match timeline */
+.match { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border: 2px solid var(--mint); border-radius: 10px; overflow: hidden; }
+@media (max-width: 760px) { .match { grid-template-columns: minmax(0, 1fr); } }
+.step { padding: 16px; display: grid; gap: 4px; align-content: start; border-right: 1px solid rgba(124, 198, 176, 0.35); min-width: 0; }
+.step:last-child { border-right: 0; }
+@media (max-width: 760px) { .step { border-right: 0; border-bottom: 1px solid rgba(124, 198, 176, 0.35); } .step:last-child { border-bottom: 0; } }
+.step .t { font-family: var(--mono); font-weight: 700; color: var(--siren); font-size: 14px; }
+.step b { font-size: 17px; }
+.step span { font-size: 14px; opacity: 0.88; }
+.step.play { background: var(--night-3); }
+
+/* Agenda */
+.table-wrap { overflow-x: auto; border-radius: 10px; border: 2px solid var(--night-3); }
+table { width: 100%; border-collapse: collapse; min-width: 560px; }
+th, td { text-align: left; padding: 12px 16px; vertical-align: top; }
+thead th { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mint); background: var(--night-2); }
+tbody tr { border-top: 1px solid var(--night-3); }
+tbody tr:nth-child(odd) { background: rgba(255, 255, 255, 0.025); }
+td.day { font-family: var(--mono); font-weight: 700; color: var(--siren); white-space: nowrap; }
+
+/* FAQ */
+.faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 720px) { .faq { grid-template-columns: minmax(0, 1fr); } }
+.faq div { background: var(--paper); color: var(--ink); border-radius: 10px; padding: 18px; }
+.faq h3 { font-family: var(--display); font-weight: 400; font-size: 22px; margin: 0 0 6px; }
+.faq p { margin: 0; font-size: 15px; }
+
+.band { background: var(--night-2); border: 2px dashed var(--siren); border-radius: 12px; padding: 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+.band p { margin: 0; font-family: var(--display); font-size: 28px; }
+
+/* Venue */
+.venue-top { display: grid; gap: 12px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 8px; }
+@media (max-width: 760px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stat { border-left: 4px solid var(--siren); padding: 4px 0 4px 12px; }
+.stat b { display: block; font-family: var(--display); font-weight: 400; font-size: 30px; line-height: 1.1; color: var(--paper); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14px; color: var(--mint); }
+.map-wrap { background: var(--paper); border-radius: 12px; padding: 12px; overflow-x: auto; }
+.map-wrap svg { display: block; width: 100%; min-width: 720px; height: auto; }
+.map-note { font-family: var(--mono); font-size: 12px; color: var(--mint); margin: 8px 0 0; }
+.flow { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.flow li { background: var(--night-3); border-radius: 999px; padding: 6px 14px; font-size: 14px; }
+.flow li b { color: var(--siren); font-family: var(--mono); margin-right: 6px; }
+.cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 820px) { .cols { grid-template-columns: minmax(0, 1fr); } }
+.col { background: var(--night-2); border-radius: 10px; padding: 20px; min-width: 0; }
+.col h3 { font-family: var(--display); font-weight: 400; font-size: 24px; margin: 0 0 10px; color: var(--siren); }
+.col ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 15px; }
+.rules { counter-reset: r; list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; }
+@media (max-width: 720px) { .rules { grid-template-columns: minmax(0, 1fr); } }
+.rules li { counter-increment: r; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: start; font-size: 15px; }
+.rules li::before { content: counter(r); font-family: var(--mono); font-weight: 700; background: var(--rust); color: var(--paper); width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; }
+
+/* ===== Registration (unchanged look) ===== */
+.reg-head { display: grid; gap: 8px; }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start; }
+@media (max-width: 860px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+.card { background: var(--paper); color: var(--ink); border-radius: 10px; overflow: hidden; min-width: 0; }
+.card-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 16px 24px; border-bottom: 2px solid var(--ink); font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
+.card-head b { color: var(--rust); }
+form { display: grid; gap: 0; }
+fieldset { border: 0; margin: 0; padding: 24px; border-bottom: 1px dashed var(--rule); display: grid; gap: 14px; min-width: 0; }
+fieldset:last-of-type { border-bottom: 0; }
+legend { float: left; width: 100%; display: flex; align-items: baseline; gap: 10px; font-family: var(--display); font-size: 26px; margin-bottom: 4px; }
+legend .step-n { font-family: var(--mono); font-size: 13px; color: var(--rust); letter-spacing: 0.06em; }
+.hint { font-size: 14px; color: var(--ink-soft); margin: -6px 0 0; }
+.options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 520px) { .options { grid-template-columns: minmax(0, 1fr); } }
+.opt { position: relative; }
+.opt input { position: absolute; opacity: 0; pointer-events: none; }
+.opt label { display: grid; gap: 4px; height: 100%; padding: 14px 16px; background: var(--paper-2); border: 2px solid var(--rule); border-radius: 8px; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
+.opt label:hover { border-color: var(--ink-soft); }
+.opt input:checked + label { border-color: var(--ink); background: #fff8e8; box-shadow: inset 6px 0 0 var(--siren); }
+.opt input:focus-visible + label { outline: 3px solid var(--rust); outline-offset: 2px; }
+.opt .name { font-weight: 700; }
+.opt .price { font-family: var(--mono); font-weight: 700; color: var(--rust); }
+.opt .desc { font-size: 14px; color: var(--ink-soft); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip input { position: absolute; opacity: 0; pointer-events: none; }
+.chip label { display: inline-grid; text-align: center; min-width: 92px; padding: 8px 14px; border: 2px solid var(--rule); border-radius: 6px; background: var(--paper-2); cursor: pointer; font-family: var(--mono); font-size: 13px; }
+.chip label b { font-family: var(--body); font-size: 16px; }
+.chip input:checked + label { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.chip input:focus-visible + label { outline: 3px solid var(--rust); outline-offset: 2px; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 520px) { .row { grid-template-columns: minmax(0, 1fr); } }
+.field { display: grid; gap: 6px; min-width: 0; }
+.field label { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"], select { width: 100%; font: inherit; color: var(--ink); background: #fffaf0; border: 2px solid var(--rule); border-radius: 6px; padding: 10px 12px; }
+input:focus, select:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(242, 179, 61, 0.45); }
+.field.invalid input, .field.invalid select { border-color: var(--rust); }
+.err { font-size: 13px; color: var(--rust); }
+.err:empty { display: none; }
+.check { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; align-items: start; font-size: 15px; }
+.check input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--ink); }
+.check.invalid { color: var(--rust); }
+.guardian { display: grid; gap: 14px; padding: 16px; border-radius: 8px; background: #f8e2b2; border-left: 6px solid var(--siren); }
+.guardian p { margin: 0; font-size: 14px; }
+aside.summary { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 84px); background: var(--night-2); border: 2px solid var(--siren); border-radius: 10px; padding: 20px; display: grid; gap: 14px; min-width: 0; }
+@media (max-width: 860px) { aside.summary { position: static; } }
+aside.summary h2 { font-family: var(--display); font-weight: 400; font-size: 28px; margin: 0; color: var(--paper); }
+.sum { display: grid; gap: 8px; margin: 0; }
+.sum div { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid rgba(243, 230, 200, 0.15); padding-bottom: 8px; }
+.sum dt { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mint); }
+.sum dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+.total { display: flex; justify-content: space-between; align-items: baseline; }
+.total span { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mint); }
+.total strong { font-family: var(--display); font-weight: 400; font-size: 36px; color: var(--siren); font-variant-numeric: tabular-nums; }
+button.go { font: inherit; font-weight: 700; font-size: 17px; width: 100%; padding: 14px 18px; border: 0; border-radius: 8px; background: var(--siren); color: var(--ink); cursor: pointer; }
+button.go:hover { background: #ffc552; }
+button.go:focus-visible { outline: 3px solid var(--paper); outline-offset: 3px; }
+.small { font-size: 13px; opacity: 0.75; margin: 0; }
+.formerr { font-size: 14px; color: #ffb4a8; margin: 0; }
+.formerr:empty { display: none; }
+.ticket-wrap { display: grid; gap: 16px; justify-items: center; }
+.preview-note { max-width: 640px; font-size: 14px; background: var(--night-2); border: 1px dashed var(--mint); border-radius: 8px; padding: 12px 16px; margin: 0; }
+.ticket { width: 100%; max-width: 640px; display: grid; grid-template-columns: minmax(0, 1fr) 220px; background: var(--paper); color: var(--ink); border-radius: 12px; overflow: hidden; }
+@media (max-width: 560px) { .ticket { grid-template-columns: minmax(0, 1fr); } }
+.t-main { padding: 22px 24px; display: grid; gap: 10px; min-width: 0; }
+.t-main .t-tag { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; color: var(--rust); text-transform: uppercase; }
+.t-main h3 { font-family: var(--display); font-weight: 400; font-size: 40px; line-height: 1; margin: 0; }
+.t-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; margin: 6px 0 0; }
+.t-grid dt { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+.t-grid dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+.t-stub { background: var(--paper-2); border-left: 3px dashed var(--ink); padding: 20px; display: grid; gap: 10px; justify-items: center; align-content: center; }
+@media (max-width: 560px) { .t-stub { border-left: 0; border-top: 3px dashed var(--ink); } }
+#qr { background: #fff; padding: 8px; border-radius: 6px; line-height: 0; }
+#qr img, #qr canvas { display: block; width: 160px; height: 160px; }
+.t-id { font-family: var(--mono); font-weight: 700; letter-spacing: 0.06em; }
+.t-stub small { font-size: 12px; color: var(--ink-soft); text-align: center; }
+button.again { font: inherit; font-weight: 700; padding: 10px 18px; border-radius: 8px; border: 2px solid var(--paper); background: transparent; color: var(--paper); cursor: pointer; }
+button.again:focus-visible { outline: 3px solid var(--siren); outline-offset: 3px; }
+
+footer { border-top: 1px solid var(--night-3); padding-block: 20px 32px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; color: var(--mint); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } .poster { transform: none; } }
+</style>
+</head>
+<body>
+
+
+<div class="hazard" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#home">Atomic <span>Town</span></a>
+    <nav class="tabs" aria-label="Main">
+      <a href="#home" data-tab="home">Home</a>
+      <a href="#venue" data-tab="venue">Venue</a>
+      <a href="#register" data-tab="register" class="cta">Register</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= HOME ================= -->
+  <section class="view" data-view="home" aria-label="Home">
+    <div class="hero">
+      <div class="hero-text">
+        <span class="tag">4 NIGHTS ONLY · BIC · SAKHIR</span>
+        <h1>Atomic Town</h1>
+        <p class="tagline">Duck. Cover. Play.</p>
+        <p class="when">THU 14 – SUN 17 JAN 2027 · 4:00 – 10:30 PM</p>
+        <p class="lede">A 1950s test town rises at Bahrain International Circuit for four evenings only. Pastel house fronts, wrecked cars and an air-raid siren. Two teams of 10, one town, twenty minutes. Not playing? Watch from the Diner with food and coffee.</p>
+        <div class="facts"><span class="fact">Players 12+</span><span class="fact">10 v 10</span><span class="fact">Full gear included</span><span class="fact">Spectators all ages</span></div>
+        <div class="btns"><a class="btn" href="#register">Book a match</a><a class="btn ghost" href="#venue">See the venue</a></div>
+      </div>
+      <img class="poster" src="poster.jpg" alt="Atomic Town poster: a 1950s desert test town with bunting and a mushroom cloud, 4 nights only at BIC Sakhir, ages 12+ to play, Thu 14 to Sun 17 January, 4 to 10:30 PM, players 8.5 BD, spectators 3 BD, team of 10 80 BD.">
+    </div>
+
+    <section aria-labelledby="h-tickets">
+      <div class="sec-head"><p class="eyebrow">Tickets</p><h2 class="sec" id="h-tickets">Pick how you enter town</h2></div>
+      <div class="tickets">
+        <div class="tcard"><span class="k">Player</span><span class="v">8.5 BD</span><span class="d">One 20-min match, full gear and 100 paintballs</span></div>
+        <div class="tcard hot"><span class="save">SAVE 5 BD</span><span class="k">Team of 10</span><span class="v">80 BD</span><span class="d">Book a whole side in one go</span></div>
+        <div class="tcard"><span class="k">Spectator</span><span class="v">3 BD</span><span class="d">The Diner, seating and the viewing fence</span></div>
+        <div class="tcard"><span class="k">Under-12 spectator</span><span class="v">Free</span><span class="d">With a paying adult</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-match">
+      <div class="sec-head"><p class="eyebrow">One ticket, one match</p><h2 class="sec" id="h-match">How your 20 minutes go</h2></div>
+      <div class="match">
+        <div class="step"><span class="t">−20 MIN</span><b>Check in</b><span>Show your QR ticket, sign the waiver, get your wristband.</span></div>
+        <div class="step"><span class="t">−10 MIN</span><b>Gear up</b><span>Safety brief, mask, marker and 100 paintballs.</span></div>
+        <div class="step play"><span class="t">0–6 MIN</span><b>Team Deathmatch</b><span>Get hit, walk back to spawn, come back in. Most hits wins.</span></div>
+        <div class="step play"><span class="t">8–14 MIN</span><b>Defuse the Nuke</b><span>One team guards a "bomb" in a house. The other has 6 minutes to reach it.</span></div>
+        <div class="step"><span class="t">16–20 MIN</span><b>Reset</b><span>Return your gear and head to the Diner. Next match starts.</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-nights">
+      <div class="sec-head"><p class="eyebrow">Programme</p><h2 class="sec" id="h-nights">Four evenings, each with its own moment</h2></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Evening</th><th>Hours</th><th>Highlight</th></tr></thead>
+          <tbody>
+            <tr><td class="day">THU 14 JAN</td><td>4:00 – 10:30 PM</td><td>Corporate and university block from 4 to 6 PM</td></tr>
+            <tr><td class="day">FRI 15 JAN</td><td>4:00 – 10:30 PM</td><td>Family evening in the Diner, plus "Night Ops" with smoke and green light from 6 PM</td></tr>
+            <tr><td class="day">SAT 16 JAN</td><td>4:00 – 10:30 PM</td><td>Leaderboard knockout: semi-finals at 9:20 and 9:40 PM, final at 10:00 PM</td></tr>
+            <tr><td class="day">SUN 17 JAN</td><td>4:00 – 10:30 PM</td><td>"Last Siren" closing with prizes and a team photo at 10:20 PM</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="map-note">A new match starts every 20 minutes from 4:00 PM. Last match 10:00 PM.</p>
+    </section>
+
+    <section aria-labelledby="h-faq">
+      <div class="sec-head"><p class="eyebrow">Good to know</p><h2 class="sec" id="h-faq">Before you come</h2></div>
+      <div class="faq">
+        <div><h3>How old do I need to be?</h3><p>Players must be 12 or older. Under-18s need a parent or guardian to sign the waiver. Spectators can be any age.</p></div>
+        <div><h3>What should I wear?</h3><p>Long sleeves, trousers and closed shoes. We give you a mask, marker and paintballs. Masks stay on past the gear-up line.</p></div>
+        <div><h3>Is there food?</h3><p>Yes. The Diner has burgers, fries, milkshakes, karak and coffee. Everything is halal, with vegetarian options and allergen labels.</p></div>
+        <div><h3>What if the weather turns?</h3><p>If there is rain or a sandstorm we pause play and move you to a later match the same night or the next evening.</p></div>
+      </div>
+    </section>
+
+    <div class="band"><p>The siren sounds on 14 January.</p><a class="btn" href="#register">Book your match</a></div>
+  </section>
+
+  <!-- ================= VENUE ================= -->
+  <section class="view" data-view="venue" aria-label="Venue" hidden>
+    <div class="venue-top">
+      <span class="tag">THE VENUE</span>
+      <h1>BIC Entertainment Plaza</h1>
+      <p class="lede">Atomic Town is built on the Entertainment Plaza at Bahrain International Circuit in Sakhir: a licensed event space with parking, toilets and power, and no homes nearby. We build the whole town on top of the plaza for four nights.</p>
+      <div class="stats">
+        <div class="stat"><b>50 × 35 m</b><span>the playing town</span></div>
+        <div class="stat"><b>4 m</b><span>safety netting all round</span></div>
+        <div class="stat"><b>~120</b><span>people on site at once</span></div>
+        <div class="stat"><b>1</b><span>one-way loop, no crossing paths</span></div>
+      </div>
+    </div>
+
+    <section aria-labelledby="h-map">
+      <div class="sec-head"><p class="eyebrow">Site layout</p><h2 class="sec" id="h-map">A one-way loop through the plaza</h2></div>
+      <div class="map-wrap">
+        <svg viewBox="0 0 1000 600" role="img" aria-labelledby="map-title map-desc">
+          <title id="map-title">Atomic Town site layout</title>
+          <desc id="map-desc">Guests park, enter through the gate, wait at the Diner, check in, gear up, play in the town, return gear and come back to the Diner.</desc>
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b23b30"/></marker>
+            <pattern id="hz" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="16" fill="#f2b33d"/><rect x="8" width="8" height="16" fill="#1f3a35"/></pattern>
+          </defs>
+          <rect x="0" y="0" width="1000" height="600" fill="#f3e6c8"/>
+          <!-- parking -->
+          <rect x="20" y="30" width="150" height="540" rx="8" fill="#d9c79f"/>
+          <text x="95" y="290" text-anchor="middle" font-family="Space Mono, monospace" font-size="17" font-weight="700" fill="#1f3a35">① BIC PARKING</text>
+          <text x="95" y="314" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" fill="#4d5d58">+ accessible bays</text>
+          <!-- lock-up -->
+          <rect x="200" y="30" width="100" height="80" rx="6" fill="#4d5d58"/>
+          <text x="250" y="66" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#f3e6c8">Lock-up</text>
+          <text x="250" y="86" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#f3e6c8">container + air fill</text>
+          <!-- gate -->
+          <rect x="200" y="250" width="100" height="90" rx="6" fill="#f2b33d"/>
+          <text x="250" y="290" text-anchor="middle" font-family="Space Mono, monospace" font-size="16" font-weight="700" fill="#1f3a35">② GATE</text>
+          <text x="250" y="312" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1f3a35">QR scan</text>
+          <!-- toilets -->
+          <rect x="200" y="470" width="100" height="100" rx="6" fill="#d9c79f"/>
+          <text x="250" y="514" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#1f3a35">Toilets</text>
+          <text x="250" y="534" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#4d5d58">BIC block, accessible</text>
+          <!-- check-in, gear-up -->
+          <rect x="330" y="30" width="135" height="90" rx="6" fill="#7cc6b0"/>
+          <text x="397" y="68" text-anchor="middle" font-family="Space Mono, monospace" font-size="15" font-weight="700" fill="#1f3a35">④ CHECK-IN</text>
+          <text x="397" y="90" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1f3a35">waiver + band</text>
+          <rect x="480" y="30" width="135" height="90" rx="6" fill="#7cc6b0"/>
+          <text x="547" y="68" text-anchor="middle" font-family="Space Mono, monospace" font-size="15" font-weight="700" fill="#1f3a35">⑤ GEAR-UP</text>
+          <text x="547" y="90" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#1f3a35">brief · masks on</text>
+          <!-- diner -->
+          <rect x="330" y="370" width="285" height="200" rx="8" fill="#1f3a35"/>
+          <line x1="330" y1="364" x2="615" y2="364" stroke="#b23b30" stroke-width="5" stroke-dasharray="10 6"/>
+          <text x="472" y="452" text-anchor="middle" font-family="Space Mono, monospace" font-size="17" font-weight="700" fill="#f2b33d">③ THE DINER</text>
+          <text x="472" y="478" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#f3e6c8">seating · coffee shop · 5 vendors</text>
+          <text x="472" y="500" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="13" fill="#7cc6b0">viewing fence faces the town</text>
+          <!-- town -->
+          <rect x="640" y="30" width="340" height="330" rx="4" fill="none" stroke="#b23b30" stroke-width="3" stroke-dasharray="12 8"/>
+          <rect x="652" y="42" width="316" height="306" fill="#e6d3a6"/>
+          <rect x="652" y="42" width="316" height="10" fill="url(#hz)"/>
+          <rect x="672" y="140" width="46" height="110" rx="4" fill="#b23b30" opacity="0.85"/>
+          <text x="695" y="200" text-anchor="middle" font-family="Space Mono, monospace" font-size="11" font-weight="700" fill="#f3e6c8" transform="rotate(-90 695 196)">RED SPAWN</text>
+          <rect x="902" y="140" width="46" height="110" rx="4" fill="#3a6fb0" opacity="0.85"/>
+          <text x="925" y="200" text-anchor="middle" font-family="Space Mono, monospace" font-size="11" font-weight="700" fill="#f3e6c8" transform="rotate(90 925 196)">BLUE SPAWN</text>
+          <rect x="745" y="80" width="80" height="55" rx="3" fill="#f2b33d"/><text x="785" y="113" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="#1f3a35">House</text>
+          <rect x="800" y="250" width="80" height="55" rx="3" fill="#7cc6b0"/><text x="840" y="283" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" font-weight="700" fill="#1f3a35">House</text>
+          <rect x="750" y="180" width="110" height="34" rx="10" fill="#4d5d58"/><text x="805" y="202" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#f3e6c8">Wrecked bus</text>
+          <rect x="860" y="95" width="34" height="22" rx="4" fill="#4d5d58"/><rect x="735" y="270" width="34" height="22" rx="4" fill="#4d5d58"/>
+          <text x="810" y="335" text-anchor="middle" font-family="Space Mono, monospace" font-size="14" font-weight="700" fill="#1f3a35">⑥ THE TOWN · 50 × 35 m</text>
+          <!-- gear return + first aid -->
+          <rect x="640" y="390" width="160" height="80" rx="6" fill="#7cc6b0"/>
+          <text x="720" y="426" text-anchor="middle" font-family="Space Mono, monospace" font-size="14" font-weight="700" fill="#1f3a35">⑦ GEAR RETURN</text>
+          <text x="720" y="448" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#1f3a35">exit to the Diner</text>
+          <rect x="820" y="390" width="160" height="80" rx="6" fill="#ffffff" stroke="#b23b30" stroke-width="3"/>
+          <text x="900" y="426" text-anchor="middle" font-family="Space Mono, monospace" font-size="14" font-weight="700" fill="#b23b30">+ FIRST AID</text>
+          <text x="900" y="448" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#1f3a35">ambulance lane</text>
+          <rect x="820" y="490" width="160" height="80" rx="6" fill="none" stroke="#b23b30" stroke-width="2" stroke-dasharray="6 5"/>
+          <text x="900" y="535" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="12" fill="#b23b30">keep clear</text>
+          <!-- flow arrows -->
+          <g fill="none" stroke="#b23b30" stroke-width="3" marker-end="url(#arrow)">
+            <path d="M170 295 H196"/>
+            <path d="M300 300 Q330 330 360 366"/>
+            <path d="M380 366 Q370 240 390 124"/>
+            <path d="M466 75 H476"/>
+            <path d="M616 75 H636"/>
+            <path d="M720 362 V386"/>
+            <path d="M640 440 Q628 470 618 470"/>
+          </g>
+        </svg>
+      </div>
+      <p class="map-note">Not to scale. Red dashed line = safety netting. Nobody walks past the gear-up line without a mask.</p>
+      <ol class="flow" aria-label="Guest route">
+        <li><b>1</b>Park</li><li><b>2</b>Gate</li><li><b>3</b>Diner</li><li><b>4</b>Check in</li><li><b>5</b>Gear up</li><li><b>6</b>Play</li><li><b>7</b>Return gear, back to the Diner</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="h-info">
+      <div class="sec-head"><p class="eyebrow">Plan your visit</p><h2 class="sec" id="h-info">Getting there and what's on site</h2></div>
+      <div class="cols">
+        <div class="col"><h3>Getting there</h3><ul><li>Bahrain International Circuit, Sakhir</li><li>Follow the "Atomic Town" road signs to the gate for the Entertainment Plaza</li><li>Free parking in the circuit car park</li><li>Arrive 20 minutes before your match</li></ul></div>
+        <div class="col"><h3>On site</h3><ul><li>The Diner: seating, coffee shop and 5 food stalls</li><li>Free water stations</li><li>Shaded seating and covered gear-up area</li><li>Lock-up container for gear</li><li>Paramedic and first aid by the field</li></ul></div>
+        <div class="col"><h3>Accessibility</h3><ul><li>Accessible parking bays by the gate</li><li>Level paved paths and matting to the Diner and viewing fence</li><li>Accessible toilets</li><li>Free entry for carers</li><li>Signs in Arabic and English</li></ul></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-rules">
+      <div class="sec-head"><p class="eyebrow">Safety first</p><h2 class="sec" id="h-rules">Town rules</h2></div>
+      <ol class="rules">
+        <li>Masks stay on from the gear-up line until you hand your gear back.</li>
+        <li>Players are 12+. Under-18s need a signed parent or guardian waiver.</li>
+        <li>Referees have the final word. When the siren stops play, stop.</li>
+        <li>No sliding or diving on the plaza surface.</li>
+        <li>Spectators stay behind the netting and the viewing fence.</li>
+        <li>No food or drink past the gear-up line.</li>
+      </ol>
+    </section>
+
+    <div class="band"><p>Seen enough? Pick your match.</p><a class="btn" href="#register">Register now</a></div>
+  </section>
+
+  <!-- ================= REGISTER ================= -->
+  <section class="view" data-view="register" aria-label="Register" hidden>
+    <div class="reg-head">
+      <span class="tag">REGISTRATION</span>
+      <h1>Book your match</h1>
+      <p class="when">THU 14 – SUN 17 JAN 2027 · 4:00 – 10:30 PM</p>
+      <p class="lede">Pick a ticket, an evening and a match time. Your QR ticket is sent to your email.</p>
+    </div>
+
+    <div id="register-view" class="grid">
+      <section class="card" aria-label="Registration form">
+        <div class="card-head"><span>Civil Defence Registration · Form CD-57</span><b>Players 12+</b></div>
+        <form id="reg" novalidate>
+          <fieldset>
+            <legend><span class="step-n">01</span> Choose your ticket</legend>
+            <div class="options" role="radiogroup">
+              <div class="opt"><input type="radio" name="ticket" id="t-player" value="player" checked><label for="t-player"><span class="name">Player</span><span class="price">8.500 BD</span><span class="desc">One 20-min match, full gear and 100 paintballs</span></label></div>
+              <div class="opt"><input type="radio" name="ticket" id="t-team" value="team"><label for="t-team"><span class="name">Team of 10</span><span class="price">80.000 BD</span><span class="desc">Book a whole side in one go (8 BD each)</span></label></div>
+              <div class="opt"><input type="radio" name="ticket" id="t-spec" value="spectator"><label for="t-spec"><span class="name">Spectator</span><span class="price">3.000 BD</span><span class="desc">The Diner, seating and the viewing fence</span></label></div>
+              <div class="opt"><input type="radio" name="ticket" id="t-kid" value="kid"><label for="t-kid"><span class="name">Under-12 spectator</span><span class="price">Free</span><span class="desc">Must come with a paying adult</span></label></div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="step-n">02</span> Pick your evening</legend>
+            <div class="chips" role="radiogroup" aria-label="Evening">
+              <span class="chip"><input type="radio" name="day" id="d-14" value="Thu 14 Jan"><label for="d-14">THU<b>14 Jan</b></label></span>
+              <span class="chip"><input type="radio" name="day" id="d-15" value="Fri 15 Jan" checked><label for="d-15">FRI<b>15 Jan</b></label></span>
+              <span class="chip"><input type="radio" name="day" id="d-16" value="Sat 16 Jan"><label for="d-16">SAT<b>16 Jan</b></label></span>
+              <span class="chip"><input type="radio" name="day" id="d-17" value="Sun 17 Jan"><label for="d-17">SUN<b>17 Jan</b></label></span>
+            </div>
+            <div class="row" id="match-row">
+              <div class="field"><label for="slot">Match time</label><select id="slot" name="slot"></select></div>
+              <div class="field" id="team-field" hidden><label for="teamname">Team name</label><input type="text" id="teamname" name="teamname" placeholder="e.g. Red Base Raiders" autocomplete="off"><span class="err" id="e-teamname"></span></div>
+            </div>
+            <p class="hint" id="slot-hint">Please arrive 20 minutes before your match for check-in and the safety brief.</p>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="step-n">03</span> Your details</legend>
+            <div class="row">
+              <div class="field"><label for="fullname">Full name</label><input type="text" id="fullname" name="fullname" placeholder="e.g. Ali Hasan" autocomplete="name"><span class="err" id="e-fullname"></span></div>
+              <div class="field"><label for="email">Email (your ticket goes here)</label><input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email"><span class="err" id="e-email"></span></div>
+            </div>
+            <div class="row">
+              <div class="field"><label for="phone">Mobile</label><input type="tel" id="phone" name="phone" placeholder="+973 3xxx xxxx" autocomplete="tel"><span class="err" id="e-phone"></span></div>
+              <div class="field"><label for="age">Age</label><input type="number" id="age" name="age" min="1" max="99" placeholder="e.g. 21" inputmode="numeric"><span class="err" id="e-age"></span></div>
+            </div>
+            <div class="guardian" id="guardian" hidden>
+              <p><b>Under 18?</b> A parent or guardian must agree to the waiver for you to play.</p>
+              <div class="field"><label for="gname">Parent or guardian name</label><input type="text" id="gname" name="gname" placeholder="e.g. Fatima Hasan"><span class="err" id="e-gname"></span></div>
+              <label class="check" id="c-guardian"><input type="checkbox" id="gok"> <span>I am the parent or guardian and I agree to the waiver on their behalf.</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="step-n">04</span> Safety and privacy</legend>
+            <label class="check" id="c-waiver"><input type="checkbox" id="waiver"> <span>I agree to the safety rules: my mask stays on past the gear-up line, I follow the referees, and I accept the risks of playing paintball.</span></label>
+            <label class="check" id="c-privacy"><input type="checkbox" id="privacy"> <span>I agree that Atomic Town stores my name, contact details and age only to run my booking (PDPL, Law No. 30 of 2018). My details are never shared with sponsors without my consent.</span></label>
+          </fieldset>
+        </form>
+      </section>
+
+      <aside class="summary" aria-label="Booking summary">
+        <h2>Your booking</h2>
+        <dl class="sum">
+          <div><dt>Ticket</dt><dd id="s-ticket">Player</dd></div>
+          <div><dt>Evening</dt><dd id="s-day">Fri 15 Jan</dd></div>
+          <div id="s-slot-row"><dt>Match</dt><dd id="s-slot">6:00 PM</dd></div>
+          <div><dt>Includes</dt><dd id="s-inc">Full gear + 100 balls</dd></div>
+        </dl>
+        <div class="total"><span>Total</span><strong id="s-total">8.500 BD</strong></div>
+        <button class="go" type="submit" form="reg">Get my ticket</button>
+        <p class="formerr" id="formerr" role="alert"></p>
+        <p class="small">Prices in Bahraini dinars. Extra 100 paintballs are 2 BD at the field.</p>
+      </aside>
+    </div>
+
+    <div id="ticket-view" class="ticket-wrap" hidden>
+      <p class="preview-note"><b>Preview only.</b> Nothing was saved or emailed. On the live site this ticket is emailed to <b id="tv-email"></b> with the QR code attached.</p>
+      <article class="ticket" aria-label="Your ticket">
+        <div class="t-main">
+          <span class="t-tag">Atomic Town · Entry ticket</span>
+          <h3 id="tv-type">Player</h3>
+          <dl class="t-grid">
+            <div><dt>Name</dt><dd id="tv-name"></dd></div>
+            <div><dt>Evening</dt><dd id="tv-day"></dd></div>
+            <div id="tv-slot-wrap"><dt>Match</dt><dd id="tv-slot"></dd></div>
+            <div><dt>Paid</dt><dd id="tv-total"></dd></div>
+            <div id="tv-team-wrap" hidden><dt>Team</dt><dd id="tv-team"></dd></div>
+            <div><dt>Venue</dt><dd>BIC Entertainment Plaza, Sakhir</dd></div>
+          </dl>
+        </div>
+        <div class="t-stub">
+          <div id="qr" role="img" aria-label="QR code for your ticket"></div>
+          <span class="t-id" id="tv-id"></span>
+          <small>Show this at the gate</small>
+        </div>
+      </article>
+      <button class="again" type="button" id="again">Register someone else</button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>ATOMIC TOWN · 14–17 JAN 2027 · BIC SAKHIR</span><span>INSTAGRAM + TIKTOK · @PAINTBALL_BH</span></div>
+</footer>
+<div class="hazard" aria-hidden="true"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function () {
+  /* ---------- Tabs (hash routing) ---------- */
+  var VIEWS = ["home", "venue", "register"];
+  function route() {
+    var h = (location.hash || "").replace("#", "");
+    var name = VIEWS.indexOf(h) >= 0 ? h : "home";
+    document.querySelectorAll("[data-view]").forEach(function (v) { v.hidden = v.getAttribute("data-view") !== name; });
+    document.querySelectorAll("nav.tabs a").forEach(function (a) {
+      if (a.getAttribute("data-tab") === name) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", route);
+  route();
+
+  /* ---------- Registration ---------- */
+  var TICKETS = {
+    player:    { name: "Player",             price: 8.5, inc: "Full gear + 100 balls", plays: true },
+    team:      { name: "Team of 10",         price: 80,  inc: "10 players, full gear", plays: true },
+    spectator: { name: "Spectator",          price: 3,   inc: "Diner + viewing fence", plays: false },
+    kid:       { name: "Under-12 spectator", price: 0,   inc: "Diner + viewing fence", plays: false }
+  };
+  var slotSel = document.getElementById("slot");
+  for (var m = 16 * 60; m <= 22 * 60; m += 20) {
+    var h = Math.floor(m / 60), min = m % 60;
+    var label = (h > 12 ? h - 12 : h) + ":" + (min < 10 ? "0" : "") + min + " PM";
+    var o = document.createElement("option");
+    o.value = label; o.textContent = label;
+    if (label === "6:00 PM") o.selected = true;
+    slotSel.appendChild(o);
+  }
+  var form = document.getElementById("reg");
+  function $(id) { return document.getElementById(id); }
+  function val(name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ""; }
+  function money(n) { return n === 0 ? "Free" : n.toFixed(3) + " BD"; }
+
+  function update() {
+    var t = TICKETS[val("ticket")];
+    var age = parseInt($("age").value, 10);
+    $("s-ticket").textContent = t.name;
+    $("s-day").textContent = val("day");
+    $("s-slot").textContent = slotSel.value;
+    $("s-inc").textContent = t.inc;
+    $("s-total").textContent = money(t.price);
+    $("match-row").hidden = !t.plays;
+    $("slot-hint").hidden = !t.plays;
+    $("s-slot-row").hidden = !t.plays;
+    $("team-field").hidden = val("ticket") !== "team";
+    $("c-waiver").hidden = !t.plays;
+    $("guardian").hidden = !(t.plays && age > 0 && age < 18);
+  }
+  form.addEventListener("change", update);
+  form.addEventListener("input", update);
+  update();
+
+  function setErr(id, msg) {
+    var e = $("e-" + id);
+    if (e) e.textContent = msg;
+    var f = $(id) && $(id).closest(".field");
+    if (f) f.classList.toggle("invalid", !!msg);
+    return msg ? 1 : 0;
+  }
+  function setCheck(wrapId, ok) { $(wrapId).classList.toggle("invalid", !ok); return ok ? 0 : 1; }
+
+  function validate() {
+    var t = TICKETS[val("ticket")];
+    var bad = 0;
+    var age = parseInt($("age").value, 10);
+    bad += setErr("fullname", $("fullname").value.trim().length < 3 ? "Enter your full name." : "");
+    bad += setErr("email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($("email").value.trim()) ? "" : "Enter a valid email so we can send your ticket.");
+    bad += setErr("phone", $("phone").value.replace(/\D/g, "").length < 8 ? "Enter a mobile number with at least 8 digits." : "");
+    var ageMsg = "";
+    if (!(age > 0)) ageMsg = "Enter your age.";
+    else if (t.plays && age < 12) ageMsg = "Players must be 12 or older. Choose a spectator ticket instead.";
+    else if (val("ticket") === "kid" && age >= 12) ageMsg = "The free ticket is for under-12s. Choose Spectator instead.";
+    bad += setErr("age", ageMsg);
+    bad += setErr("teamname", val("ticket") === "team" && !$("teamname").value.trim() ? "Give your team a name." : "");
+    if (t.plays) bad += setCheck("c-waiver", $("waiver").checked); else setCheck("c-waiver", true);
+    if (t.plays && age >= 12 && age < 18) {
+      bad += setErr("gname", $("gname").value.trim().length < 3 ? "Enter your parent or guardian's name." : "");
+      bad += setCheck("c-guardian", $("gok").checked);
+    } else { setErr("gname", ""); setCheck("c-guardian", true); }
+    bad += setCheck("c-privacy", $("privacy").checked);
+    return bad;
+  }
+
+  function ticketId() {
+    var chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789", s = "";
+    var arr = new Uint32Array(8);
+    window.crypto.getRandomValues(arr);
+    for (var i = 0; i < 8; i++) s += chars[arr[i] % chars.length];
+    return "AT-" + s;
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var bad = validate();
+    if (bad) { $("formerr").textContent = "Fix the " + (bad === 1 ? "highlighted field" : bad + " highlighted fields") + " to get your ticket."; return; }
+    $("formerr").textContent = "";
+    var t = TICKETS[val("ticket")];
+    var id = ticketId();
+    $("tv-email").textContent = $("email").value.trim();
+    $("tv-type").textContent = t.name;
+    $("tv-name").textContent = $("fullname").value.trim();
+    $("tv-day").textContent = val("day") + " 2027";
+    $("tv-slot").textContent = slotSel.value;
+    $("tv-slot-wrap").hidden = !t.plays;
+    $("tv-total").textContent = money(t.price);
+    $("tv-team-wrap").hidden = val("ticket") !== "team";
+    $("tv-team").textContent = $("teamname").value.trim();
+    $("tv-id").textContent = id;
+    var qrBox = $("qr");
+    qrBox.innerHTML = "";
+    if (window.QRCode) new QRCode(qrBox, { text: id, width: 160, height: 160, colorDark: "#1f3a35", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M });
+    else qrBox.textContent = id;
+    $("register-view").hidden = true;
+    $("ticket-view").hidden = false;
+    window.scrollTo(0, 0);
+  });
+
+  $("again").addEventListener("click", function () {
+    form.reset();
+    ["fullname","email","phone","age","teamname","gname"].forEach(function (k) { setErr(k, ""); });
+    ["c-waiver","c-privacy","c-guardian"].forEach(function (k) { setCheck(k, true); });
+    slotSel.value = "6:00 PM";
+    update();
+    $("ticket-view").hidden = true;
+    $("register-view").hidden = false;
+    window.scrollTo(0, 0);
+  });
+})();
+</script>
+
+</body>
+</html>

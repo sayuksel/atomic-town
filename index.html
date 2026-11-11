@@ -141,9 +141,8 @@ h2.sec { font-family: var(--display); font-weight: 400; font-size: clamp(32px, 5
 .fact { font-family: var(--mono); font-size: 13px; border: 1px solid var(--mint); color: var(--mint); border-radius: 999px; padding: 4px 12px; }
 
 /* Ticket cards */
-.tickets { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-@media (max-width: 860px) { .tickets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 460px) { .tickets { grid-template-columns: minmax(0, 1fr); } }
+.tickets { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 720px) { .tickets { grid-template-columns: minmax(0, 1fr); } }
 .tcard { position: relative; background: var(--night-3); border: 2px solid var(--mint); border-radius: 10px; padding: 18px; display: grid; gap: 4px; align-content: start; }
 .tcard .k { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mint); }
 .tcard .v { font-family: var(--display); font-size: 40px; line-height: 1.05; color: var(--siren); font-variant-numeric: tabular-nums; }
@@ -219,6 +218,7 @@ legend { float: left; width: 100%; display: flex; align-items: baseline; gap: 10
 legend .step-n { font-family: var(--mono); font-size: 13px; color: var(--rust); letter-spacing: 0.06em; }
 .hint { font-size: 14px; color: var(--ink-soft); margin: -6px 0 0; }
 .options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.opt.wide { grid-column: 1 / -1; }
 @media (max-width: 520px) { .options { grid-template-columns: minmax(0, 1fr); } }
 .opt { position: relative; }
 .opt input { position: absolute; opacity: 0; pointer-events: none; }
@@ -319,16 +319,15 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <div class="facts"><span class="fact">Players 12+</span><span class="fact">10 v 10</span><span class="fact">Full gear included</span><span class="fact">Spectators all ages</span></div>
         <div class="btns"><a class="btn" href="#register">Book a match</a><a class="btn ghost" href="#venue">See the venue</a></div>
       </div>
-      <img class="poster" src="poster.jpg" alt="Atomic Town poster: a 1950s desert test town with bunting and a mushroom cloud, 4 nights only at BIC Sakhir, ages 12+ to play, Thu 14 to Sun 17 January, 4 to 10:30 PM, players 8.5 BD, spectators 3 BD, team of 10 80 BD.">
+      <img class="poster" src="poster.webp" alt="Atomic Town poster: two paintball players crouch beside a rusted, paint-splattered yellow school bus in a 1950s test town, with an air-raid siren tower and a mushroom cloud at sunset. Tagline: Not everyone walks out clean. 14.01.27, after sunset. Join the waitlist.">
     </div>
 
     <section aria-labelledby="h-tickets">
       <div class="sec-head"><p class="eyebrow">Tickets</p><h2 class="sec" id="h-tickets">Pick how you enter town</h2></div>
       <div class="tickets">
-        <div class="tcard"><span class="k">Player</span><span class="v">8.5 BD</span><span class="d">One 20-min match, full gear and 100 paintballs</span></div>
-        <div class="tcard hot"><span class="save">SAVE 5 BD</span><span class="k">Team of 10</span><span class="v">80 BD</span><span class="d">Book a whole side in one go</span></div>
-        <div class="tcard"><span class="k">Spectator</span><span class="v">3 BD</span><span class="d">The Diner, seating and the viewing fence</span></div>
-        <div class="tcard"><span class="k">Under-12 spectator</span><span class="v">Free</span><span class="d">With a paying adult</span></div>
+        <div class="tcard"><span class="k">Player</span><span class="v">12 BD</span><span class="d">One 20-min match, full gear and 200 paintballs. Extra 100 paintballs for 2 BD.</span></div>
+        <div class="tcard hot"><span class="save">SAVE 10 BD</span><span class="k">Team of 10</span><span class="v">110 BD</span><span class="d">Book a whole side in one go, 200 paintballs each</span></div>
+        <div class="tcard"><span class="k">Spectator</span><span class="v">2 BD</span><span class="d">The Diner, seating and the viewing fence</span></div>
       </div>
     </section>
 
@@ -336,7 +335,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <div class="sec-head"><p class="eyebrow">One ticket, one match</p><h2 class="sec" id="h-match">How your 20 minutes go</h2></div>
       <div class="match">
         <div class="step"><span class="t">−20 MIN</span><b>Check in</b><span>Show your QR ticket, sign the waiver, get your wristband.</span></div>
-        <div class="step"><span class="t">−10 MIN</span><b>Gear up</b><span>Safety brief, mask, marker and 100 paintballs.</span></div>
+        <div class="step"><span class="t">−10 MIN</span><b>Gear up</b><span>Safety brief, mask, marker and 200 paintballs.</span></div>
         <div class="step play"><span class="t">0–6 MIN</span><b>Team Deathmatch</b><span>Get hit, walk back to spawn, come back in. Most hits wins.</span></div>
         <div class="step play"><span class="t">8–14 MIN</span><b>Defuse the Nuke</b><span>One team guards a "bomb" in a house. The other has 6 minutes to reach it.</span></div>
         <div class="step"><span class="t">16–20 MIN</span><b>Reset</b><span>Return your gear and head to the Diner. Next match starts.</span></div>
@@ -506,10 +505,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <fieldset>
             <legend><span class="step-n">01</span> Choose your ticket</legend>
             <div class="options" role="radiogroup">
-              <div class="opt"><input type="radio" name="ticket" id="t-player" value="player" checked><label for="t-player"><span class="name">Player</span><span class="price">8.500 BD</span><span class="desc">One 20-min match, full gear and 100 paintballs</span></label></div>
-              <div class="opt"><input type="radio" name="ticket" id="t-team" value="team"><label for="t-team"><span class="name">Team of 10</span><span class="price">80.000 BD</span><span class="desc">Book a whole side in one go (8 BD each)</span></label></div>
-              <div class="opt"><input type="radio" name="ticket" id="t-spec" value="spectator"><label for="t-spec"><span class="name">Spectator</span><span class="price">3.000 BD</span><span class="desc">The Diner, seating and the viewing fence</span></label></div>
-              <div class="opt"><input type="radio" name="ticket" id="t-kid" value="kid"><label for="t-kid"><span class="name">Under-12 spectator</span><span class="price">Free</span><span class="desc">Must come with a paying adult</span></label></div>
+              <div class="opt"><input type="radio" name="ticket" id="t-player" value="player" checked><label for="t-player"><span class="name">Player</span><span class="price">12.000 BD</span><span class="desc">One 20-min match, full gear and 200 paintballs</span></label></div>
+              <div class="opt"><input type="radio" name="ticket" id="t-team" value="team"><label for="t-team"><span class="name">Team of 10</span><span class="price">110.000 BD</span><span class="desc">Book a whole side in one go (11 BD each, save 10 BD), 200 paintballs each</span></label></div>
+              <div class="opt wide"><input type="radio" name="ticket" id="t-spec" value="spectator"><label for="t-spec"><span class="name">Spectator</span><span class="price">2.000 BD</span><span class="desc">The Diner, seating and the viewing fence</span></label></div>
             </div>
           </fieldset>
 
@@ -559,9 +557,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
           <div><dt>Ticket</dt><dd id="s-ticket">Player</dd></div>
           <div><dt>Evening</dt><dd id="s-day">Fri 15 Jan</dd></div>
           <div id="s-slot-row"><dt>Match</dt><dd id="s-slot">6:00 PM</dd></div>
-          <div><dt>Includes</dt><dd id="s-inc">Full gear + 100 balls</dd></div>
+          <div><dt>Includes</dt><dd id="s-inc">Full gear + 200 balls</dd></div>
         </dl>
-        <div class="total"><span>Total</span><strong id="s-total">8.500 BD</strong></div>
+        <div class="total"><span>Total</span><strong id="s-total">12.000 BD</strong></div>
         <button class="go" type="submit" form="reg">Get my ticket</button>
         <p class="formerr" id="formerr" role="alert"></p>
         <p class="small">Prices in Bahraini dinars. Extra 100 paintballs are 2 BD at the field.</p>
@@ -618,10 +616,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
 
   /* ---------- Registration ---------- */
   var TICKETS = {
-    player:    { name: "Player",             price: 8.5, inc: "Full gear + 100 balls", plays: true },
-    team:      { name: "Team of 10",         price: 80,  inc: "10 players, full gear", plays: true },
-    spectator: { name: "Spectator",          price: 3,   inc: "Diner + viewing fence", plays: false },
-    kid:       { name: "Under-12 spectator", price: 0,   inc: "Diner + viewing fence", plays: false }
+    player:    { name: "Player",             price: 12,  inc: "Full gear + 200 balls", plays: true },
+    team:      { name: "Team of 10",         price: 110, inc: "10 players, full gear", plays: true },
+    spectator: { name: "Spectator",          price: 2,   inc: "Diner + viewing fence", plays: false }
   };
   var slotSel = document.getElementById("slot");
   for (var m = 16 * 60; m <= 22 * 60; m += 20) {
@@ -635,7 +632,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   var form = document.getElementById("reg");
   function $(id) { return document.getElementById(id); }
   function val(name) { var el = form.querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ""; }
-  function money(n) { return n === 0 ? "Free" : n.toFixed(3) + " BD"; }
+  function money(n) { return n.toFixed(3) + " BD"; }
 
   function update() {
     var t = TICKETS[val("ticket")];
@@ -675,7 +672,6 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     var ageMsg = "";
     if (!(age > 0)) ageMsg = "Enter your age.";
     else if (t.plays && age < 12) ageMsg = "Players must be 12 or older. Choose a spectator ticket instead.";
-    else if (val("ticket") === "kid" && age >= 12) ageMsg = "The free ticket is for under-12s. Choose Spectator instead.";
     bad += setErr("age", ageMsg);
     bad += setErr("teamname", val("ticket") === "team" && !$("teamname").value.trim() ? "Give your team a name." : "");
     if (t.plays) bad += setCheck("c-waiver", $("waiver").checked); else setCheck("c-waiver", true);

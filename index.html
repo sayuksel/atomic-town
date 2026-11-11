@@ -314,7 +314,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <span class="tag">4 NIGHTS ONLY · BIC · SAKHIR</span>
         <h1>Atomic Town</h1>
         <p class="tagline">Duck. Cover. Play.</p>
-        <p class="when">THU 14 – SUN 17 JAN 2027 · 4:00 – 10:30 PM</p>
+        <p class="when">THU 14 – SUN 17 JAN 2027 · 4:00 – 11:00 PM</p>
         <p class="lede">A 1950s test town rises at Bahrain International Circuit for four evenings only. Pastel house fronts, wrecked cars and an air-raid siren. Two teams of 10, one town, twenty minutes. Not playing? Watch from the Diner with food and coffee.</p>
         <div class="facts"><span class="fact">Players 12+</span><span class="fact">10 v 10</span><span class="fact">Full gear included</span><span class="fact">Spectators all ages</span></div>
         <div class="btns"><a class="btn" href="#register">Book a match</a><a class="btn ghost" href="#venue">See the venue</a></div>
@@ -348,14 +348,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <table>
           <thead><tr><th>Evening</th><th>Hours</th><th>Highlight</th></tr></thead>
           <tbody>
-            <tr><td class="day">THU 14 JAN</td><td>4:00 – 10:30 PM</td><td>Corporate and university block from 4 to 6 PM</td></tr>
-            <tr><td class="day">FRI 15 JAN</td><td>4:00 – 10:30 PM</td><td>Family evening in the Diner, plus "Night Ops" with smoke and green light from 6 PM</td></tr>
-            <tr><td class="day">SAT 16 JAN</td><td>4:00 – 10:30 PM</td><td>Leaderboard knockout: semi-finals at 9:20 and 9:40 PM, final at 10:00 PM</td></tr>
-            <tr><td class="day">SUN 17 JAN</td><td>4:00 – 10:30 PM</td><td>"Last Siren" closing with prizes and a team photo at 10:20 PM</td></tr>
+            <tr><td class="day">THU 14 JAN</td><td>4:00 – 11:00 PM</td><td>Corporate and university block from 4 to 6 PM</td></tr>
+            <tr><td class="day">FRI 15 JAN</td><td>4:00 – 11:00 PM</td><td>Family evening in the Diner, plus "Night Ops" with smoke and green light from 6 PM</td></tr>
+            <tr><td class="day">SAT 16 JAN</td><td>4:00 – 11:00 PM</td><td>Leaderboard knockout: semi-finals at 9:20 and 9:40 PM, final at 10:00 PM</td></tr>
+            <tr><td class="day">SUN 17 JAN</td><td>4:00 – 11:00 PM</td><td>"Last Siren" closing with prizes and a team photo at 10:20 PM</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="map-note">A new match starts every 20 minutes from 4:00 PM. Last match 10:00 PM.</p>
+      <p class="map-note">A new match starts every 20 minutes from 4:00 PM. Last match 10:20 PM.</p>
     </section>
 
     <section aria-labelledby="h-faq">
@@ -494,7 +494,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     <div class="reg-head">
       <span class="tag">REGISTRATION</span>
       <h1>Book your match</h1>
-      <p class="when">THU 14 – SUN 17 JAN 2027 · 4:00 – 10:30 PM</p>
+      <p class="when">THU 14 – SUN 17 JAN 2027 · 4:00 – 11:00 PM</p>
       <p class="lede">Pick a ticket, an evening and a match time. Your QR ticket is sent to your email.</p>
     </div>
 
@@ -621,7 +621,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     spectator: { name: "Spectator",          price: 2,   inc: "Diner + viewing fence", plays: false }
   };
   var slotSel = document.getElementById("slot");
-  for (var m = 16 * 60; m <= 22 * 60; m += 20) {
+  for (var m = 16 * 60; m <= 22 * 60 + 20; m += 20) {
     var h = Math.floor(m / 60), min = m % 60;
     var label = (h > 12 ? h - 12 : h) + ":" + (min < 10 ? "0" : "") + min + " PM";
     var o = document.createElement("option");
